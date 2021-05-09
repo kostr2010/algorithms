@@ -2,6 +2,8 @@
 
 this program takes string-like representation of graph and source node to start from, prints out shortest paths from this node to all the others. to change values, change variables `NODE_FROM` & `GRAPH` in file `main.cpp`
 
+`benchmark.txt` contains performance report
+
 # EXAMPLE
 
 ```C
