@@ -1,0 +1,7 @@
+*build/
+*.o
+*.out
+*.bin
+*output/
+.vscode*
+.clang-format*
