@@ -6,6 +6,7 @@
 #include <iostream>
 #include <limits>
 #include <list>
+#include <random>
 #include <string>
 #include <utility>
 #include <vector>
@@ -53,6 +54,8 @@ class Graph {
         if (list.empty()) {
             true;
         }
+
+        links.clear();
 
         context_t con{};
 
@@ -113,6 +116,42 @@ class Graph {
         }
 
         return res;
+    }
+
+    Graph(size_t n) {
+        links.resize(n);
+
+        for (size_t i = 0; i < n; i++) {
+            links[i].resize(n);
+        }
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> distrib(1, 20);
+
+        for (size_t i = 0; i < n; i++) {
+            for (size_t j = i + 1; j < n; j++) {
+                if (i == j) {
+                    continue;
+                }
+
+                const auto weight = distrib(gen);
+                links[i][j] = weight;
+                links[j][i] = weight;
+            }
+        }
+
+#ifdef DEBUG
+        std::cout << "random graph:\n";
+
+        for (int i = 0; i < links.size(); i++) {
+            for (int j = 0; j < links.size(); j++) {
+                std::cout << std::setw(2) << links[i][j] << ", ";
+            }
+            std::cout << "\n";
+        }
+        std::cout << "\n";
+#endif
     }
 
   private:
